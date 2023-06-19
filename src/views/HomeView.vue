@@ -3,7 +3,7 @@
   <!-- <header class="container-fluid">Psicología integral</header> -->
   <!--$ navbar para pegar el navbar arriba aplicar fixed-top-->
   <!--$ Carrousel -->
-  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="8000">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img srcset="@\assets\img\slider.png 1920w, @\assets\img\slider_cel.png 640w" class="d-block w-100" src="img/cielito.jpg">

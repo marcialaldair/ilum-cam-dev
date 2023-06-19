@@ -38,48 +38,39 @@ export default {
       error_msg: '',
     };
   },
-methods: {
-  loginUser() {
-    var payload = {
-      email: this.email,
-      password: this.password,
-    };
-
-    // Realizar una solicitud HTTP a la API para obtener los datos de correo y contraseña
-    axios.get('http://localhost/admin/')
-      .then(response => {
-        // Verificar si la respuesta contiene los datos esperados
-        if (response.status === 200) {
-          const data = response.data[0];
-          console.log(data)
-          // Comparar los datos recibidos con las credenciales ingresadas
-          if (data.Correo === payload.email && data.password === payload.password) {
-      // Las credenciales son correctas, guardar el estado de inicio de sesión en el almacenamiento local
-      localStorage.setItem('isLoggedIn', true);
-
-      // Redirigir a la página deseada
-      this.$router.push('/listar');
-
+  methods: {
+    loginUser() {
+      var payload = {
+        email: this.email,
+        password: this.password,
+      };
+      // Realizar una solicitud HTTP GET a la ruta de validación
+      axios.get('http://localhost/admin/', { params: payload })
+        .then(response => {
+          console.log(response);
+          // Verificar la respuesta del backend
+          if (response.data.success) {
+            // Las credenciales son correctas, guardar el estado de inicio de sesión en el almacenamiento local
+            localStorage.setItem('isLoggedIn', true);
+            // Redirigir a la página deseada
+            this.$router.push('/listar');
           } else {
             // Las credenciales son incorrectas, mostrar mensaje de error
             this.error = true;
             this.error_msg = 'Nombre de usuario o contraseña incorrectos.';
           }
-        } else {
-          // No se pudo obtener los datos de la API, mostrar mensaje de error
+        })
+        .catch(error => {
+          // Ocurrió un error en la solicitud HTTP, mostrar mensaje de error
           this.error = true;
-          this.error_msg = 'Error al obtener los datos de la API.';
-        }
-      })
-      .catch(error => {
-        // Ocurrió un error en la solicitud HTTP, mostrar mensaje de error
-        this.error = true;
-        this.error_msg = 'Error en la solicitud HTTP.';
-        console.error(error);
-      });
-  },
-}
+          this.error_msg = 'Error en la solicitud HTTP.';
+          console.error(error);
+        });
+    },
+  }
 };
+
+
 </script>
 
 
