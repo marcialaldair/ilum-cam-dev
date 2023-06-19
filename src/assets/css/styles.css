@@ -1,0 +1,421 @@
+@font-face {
+    font-family: DMSans;
+    src: url(../font/DMSansRegular.ttf);
+}
+
+* {
+    font-family: DMSans;
+}
+/* https://colormagic.app/palette/QnIEcn2zSuIIej7LDQ92
+https://colormagic.app/palette/4I4wR48CcAx0LCSxceSa
+*/
+header {
+    display: flex;
+    justify-content: center;
+    background-color: #9f70d2;
+    font-size: 14px;
+    color: whitesmoke;
+    padding: 10px;
+}
+
+nav {
+    top: 0px;
+    background-color: #9f70d2;
+    z-index: 2;
+    /* backdrop-filter: blur(5px); */
+}
+
+.nocollapse{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+nav a,
+.efecto {
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    color: #f7e5ff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+nav a,
+.logo {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+}
+
+nav a img {
+    width: 50px;
+}
+
+
+/*Efecto  del menu*/
+nav a::after {
+    position: absolute;
+    content: "";
+    width: 0%;
+    height: 4px;
+    background-color: #581a74;
+    left: 50%;
+    bottom: 10px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
+nav a,
+.efecto:hover {
+    color: #581a74;
+    cursor: pointer;
+}
+
+.efecto:hover::after {
+    cursor: pointer;
+    width: 100%;
+    left: 0;
+}
+
+/*FIN*/
+
+/*Estilos del slider*/
+.carousel-item {
+    height: auto;
+}
+
+.carousel-item img {
+    height: 100vh;
+    /* overflow-x:hidden;
+    overflow-y: auto; */
+}
+
+/*Card de informacion*/
+.info {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.bio {
+    border: none;
+    box-shadow: 0.3em 0.3em 4em rgba(118, 118, 118, 0.234);
+    text-align: center;
+}
+
+.purple {
+    color: #581a74;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.parrafo{
+    padding: 0px 30px 0px 30px;
+    text-align: center;
+}
+
+.image {
+    display: flex;
+    justify-content: start;
+    overflow: hidden;
+    transition: transform .5s;
+}
+
+.noticias {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    max-width: 87%;
+}
+
+.info-card {
+    display: flex;
+    justify-content: center;
+    padding: 40px 60px;
+}
+
+.encabezado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-text {
+    text-align: center;
+}
+
+.card:hover .image-izquierda img {
+    transform: scale(1.2);
+}
+
+.card:hover .image-derecha img {
+    transform: scale(1.2);
+}
+
+.card:hover .image img {
+    transform: scale(1.2);
+}
+
+/*Efecto hover de los botones*/
+.button-48 {
+    appearance: none;
+    background-color: #9f70d2;
+    border-width: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: #f7e5ff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Clarkson, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1em;
+    margin: 0;
+    opacity: 1;
+    outline: 0;
+    padding: 1em 2.2em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-rendering: geometricprecision;
+    transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1), background-color 100ms cubic-bezier(.694, 0, 0.335, 1), color 100ms cubic-bezier(.694, 0, 0.335, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+.button-48:before {
+    border-radius: 10px;
+    animation: opacityFallbackOut .5s step-end forwards;
+    backface-visibility: hidden;
+    background-color: #581a74;
+    clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: translateZ(0);
+    transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+    width: 100%;
+}
+
+.button-48:hover:before {
+    animation: opacityFallbackIn 0s step-start forwards;
+    clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
+}
+
+.button-48 span {
+    z-index: 1;
+    position: relative;
+}
+
+/*FIN*/
+
+/* Estilos de footer */
+footer {
+    height: 100px;
+    background-color: #9f70d2;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: auto;
+    text-align: left;
+}
+
+.terminos {
+    color: #f7e5ff;
+    text-decoration: none;
+}
+
+.terminos:hover {
+    color: rgba(255, 255, 255, 0.607);
+    cursor: pointer;
+}
+
+.redes {
+    fill: #fff;
+    text-decoration: none;
+    width: 40px;
+}
+
+.redes:hover {
+    transform: scale(1.1);
+}
+
+/* FIN */
+
+/* Cards de diplomas */
+.div-diplomas {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.diplomas {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.a-box {
+    display: inline-block;
+    width: 240px;
+    text-align: center;
+    padding-bottom: 4em;
+}
+
+.img-container {
+    height: 127px;
+    width: 311px;
+}
+
+.img-container img {
+    height: 100px;
+    margin: -35px 0px 0px -70px;
+}
+
+.text-container {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    padding: 70px 20px 20px 20px;
+    border-radius: 20px;
+    background: #fff;
+    margin: -120px 0px 0px 0px;
+    line-height: 19px;
+    font-size: 14px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .text-container h3 {
+    margin: 20px 0px 10px 0px;
+    color: #04bcff;
+    font-size: 18px;
+  } */
+
+/*FIN*/
+
+/* Cursos y talleres */
+.talleres {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.card-color {
+    border-top-color: #581a74;
+    border-top-width: 7px;
+    width: auto;
+    height: 100px;
+}
+
+.separacion{
+    padding-bottom: 1em;
+}
+
+.card-color>.card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* .flecha-carousel-prev {
+    left: -100px;
+}
+
+.flecha-carousel-next {
+    right: -100px;
+} */
+/* FIN  */
+
+/* Info de contacto */
+.formulario{
+    padding-bottom: 2em;
+}
+.form-contacto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+.fondo-form{
+    background-color: #dba8ff;
+}
+
+.card-form{
+    align-items: center;
+    text-align:center;
+}
+
+.boton-form{
+    padding-bottom: 40px;
+}
+
+.redes-form {
+    fill: #fff;
+    text-decoration: none;
+    width: 25px;
+}
+
+.card-info{
+    border: none;
+}
+.whatsapp{
+    text-decoration: none;
+    color: #000000d6;
+}
+/* Breakpoints */
+@media (max-width: 576px) { 
+    .image-derecha {
+        display: flex;
+        justify-content: start;
+        overflow: hidden;
+        transition: transform .5s;
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    .image-izquierda {
+        display: flex;
+        justify-content: start;
+        overflow: hidden;
+        transition: transform .5s;
+        border-radius: 10px 10px 0px 0px;
+    }
+ }
+
+@media (min-width: 577px){
+    .image-derecha {
+        display: flex;
+        justify-content: start;
+        overflow: hidden;
+        transition: transform .5s;
+        border-radius: 0px 10px 10px 0px;
+    }
+
+    .image-izquierda {
+        display: flex;
+        justify-content: start;
+        overflow: hidden;
+        transition: transform .5s;
+        border-radius: 10px 0px 0px 10px;
+    }
+}
+/* Estilos en el admin */
+.table-admin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
