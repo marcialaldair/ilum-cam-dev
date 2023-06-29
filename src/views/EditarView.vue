@@ -52,7 +52,7 @@
     ></QuillEditor>
       </div>
       <div class="button-container">
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-success">Guardar</button>
         <router-link :to="{name:'listar'}" class="btn btn-secondary" @click="cancelar" >Cancelar</router-link>
       </div>
     </form>

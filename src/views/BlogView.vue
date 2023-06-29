@@ -1,7 +1,7 @@
 <template>
   <div class="card-blog">
     <div class="container mt-5">
-      <div class="row center-cards">
+      <div class="row">
         <div v-for="publicacion in publicacionesFiltradasOrdenadas" :key="publicacion.id" class="mb-5 col-md-3 col-lg-3 card-center">
           <router-link
             :to="{ name: 'publicacion', params: { Id: publicacion.Id } }"
@@ -16,7 +16,10 @@
                 />
               </div>
               <div class="card-body">
-                <h5 class="card-title">{{ publicacion.Titulo }}</h5>
+                <h5 class="card-title">{{ truncateText(publicacion.Titulo, 38) }}</h5>
+              </div>
+              <div class="card-footer text-left">
+                <small class="text-muted">Publicado: {{ publicacion.Fecha }}</small>
               </div>
             </div>
           </router-link>
@@ -119,6 +122,13 @@ export default {
           }
         })
         .catch(console.log);
+    },
+    truncateText(text, maxLength) {
+      if (text.length > maxLength) {
+        return text.substring(0, maxLength) + "...";
+      } else {
+        return text;
+      }
     },
   },
 };

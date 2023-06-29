@@ -9,17 +9,20 @@
         <!-- Contenido de la mitad derecha (formulario) -->
         <form class="col-md-9" v-on:submit.prevent="loginUser">
           <h1 class="mb-5 title-form">Bienvenida</h1>
-          <div class="mb-5">
-            <label for="exampleInputEmail1" class="form-label">Correo</label>
-            <input v-model="email" type="email" class="form-control custom-input" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div class="form-floating mb-5">
+            <input v-model="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email</label>
           </div>
-          <div class="mb-5">
-            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input v-model="password" type="password" class="form-control custom-input" id="exampleInputPassword1">
+          <div class="form-floating mb-5">
+            <input v-model="password" type="password" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Contraseña</label>
           </div>
           <button type="submit" class="button-48">
-            <span class="text">Entrar</span>
+            <span class="text" id="liveToastBtn">Entrar</span>
           </button>
+          <div class="alert alert-danger popup" role="alert" v-show="showAlert">
+              Correo o contraseña incorrecta
+          </div>
         </form>
       </div>
     </div>
@@ -35,7 +38,7 @@ export default {
       email: '',
       password: '',
       error: false,
-      error_msg: '',
+      showAlert: false,
     };
   },
   methods: {
@@ -55,9 +58,10 @@ export default {
             // Redirigir a la página deseada
             this.$router.push('/listar');
           } else {
-            // Las credenciales son incorrectas, mostrar mensaje de error
-            this.error = true;
-            this.error_msg = 'Nombre de usuario o contraseña incorrectos.';
+            this.showAlert = true;
+            setTimeout(() => {
+              this.showAlert = false;
+            }, 3000)
           }
         })
         .catch(error => {
@@ -76,6 +80,14 @@ export default {
 
 
 <style scope>
+.popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1;
+}
+
+
 .form-container{
   display: flex;
   justify-content: center;

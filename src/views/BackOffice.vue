@@ -29,8 +29,7 @@
           <thead>
             <tr class="estilos-th">
               <th scope="col" style="width: 50px">ID</th>
-              <th scope="col" style="width: 150px">Titulo</th>
-              <th scope="col" style="width: 300px">Descripción</th>
+              <th scope="col" style="width: 400px">Titulo</th>
               <th scope="col" style="width: 20px">Estado</th>
               <th scope="col" style="width: 200px">Fecha</th>
               <th scope="col" style="width: 200px">Hora</th>
@@ -44,8 +43,7 @@
               :key="publicacion.id"
             >
               <th scope="row">{{ publicacion.Id }}</th>
-              <td>{{ truncateText(publicacion.Titulo, 15) }}</td>
-              <td>{{ truncateText(publicacion.Descripcion, 30) }}</td>
+              <td>{{ truncateText(publicacion.Titulo, 40) }}</td>
               <td>
                 <span
                   :class="
@@ -69,6 +67,7 @@
                   ></router-link>
 
                   <button
+                    id="liveToastBtn"
                     type="button"
                     v-on:click="borrarPublicacion(publicacion.Id)"
                     class="btn btn-danger btn-sm"
@@ -84,6 +83,15 @@
           </tbody>
         </table>
       </div>
+      <!--TODO:Agregar toast de borrado,crear y actualizar
+    <div class="toast toast-container bottom-0 end-0 text-bg-danger" role="alert" aria-live="assertive" aria-atomic="true" id="liveToast">
+  <div class="d-flex ">
+    <div class="toast-body">
+      Publicación borrada
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div> -->
       <div class="col-md-12 container-paginacion">
         <ul class="pagination">
           <li
@@ -210,6 +218,7 @@
   padding: 3px 5px;
   /* Otros estilos para cuando está inactivo */
 }
+
 </style>
 
 <script>
@@ -290,7 +299,6 @@ export default {
         .then((respuesta) => respuesta.json())
         .then((datosRespuesta) => {
           console.log(datosRespuesta);
-          window.location.href = "listar";
         })
         .catch(console.log);
     },
@@ -302,5 +310,18 @@ export default {
       this.$router.push("/admin");
     },
   },
+  //Codigo para generar un toast
+  // mounted(){
+  //   const toastTrigger = document.getElementById('liveToastBtn');
+  //   const toastLiveExample = document.getElementById('liveToast');
+
+  //   if (toastTrigger) {
+  //     toastTrigger.addEventListener('click', () => {
+  //       const toast = new bootstrap.Toast(toastLiveExample);
+  //       toast.show();
+  //       console.log("borrado")
+  //     });
+  //   }
+  // }
 };
 </script>

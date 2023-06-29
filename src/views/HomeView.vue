@@ -1,29 +1,30 @@
 <template>
-  <div>
-  <!-- <header class="container-fluid">Psicología integral</header> -->
-  <!--$ navbar para pegar el navbar arriba aplicar fixed-top-->
-  <!--$ Carrousel -->
-  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="8000">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img srcset="@\assets\img\slider.png 1920w, @\assets\img\slider_cel.png 640w" class="d-block w-100" src="img/cielito.jpg">
-        <!-- <img src="img/pexels-cottonbro-studio-4100672.jpg" class="d-block w-100" data-bs-interval="10000" alt="..." /> -->
+    <!-- <header class="container-fluid">Psicología integral</header> -->
+    <!--$ navbar para pegar el navbar arriba aplicar fixed-top-->
+    <!--$ Carrousel -->
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="8000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img srcset="@\assets\img\slider.png 1920w, @\assets\img\slider_cel.png 640w" class="d-block w-100"
+            src="img/cielito.jpg">
+          <!-- <img src="img/pexels-cottonbro-studio-4100672.jpg" class="d-block w-100" data-bs-interval="10000" alt="..." /> -->
+        </div>
+        <div class="carousel-item">
+          <img srcset="@\assets\img\slider1.png 1920w, @\assets\img\slider_cel1.png 640w" class="d-block w-100"
+            src="img/cielito.jpg">
+        </div>
       </div>
-      <div class="carousel-item">
-        <img srcset="@\assets\img\slider1.png 1920w, @\assets\img\slider_cel1.png 640w" class="d-block w-100" src="img/cielito.jpg">
-      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  <!--$ Informacion de la psicologa -->
-  <!-- <div class="info col-sm-12 col-md-12 col-lg-12">
+    <!--$ Informacion de la psicologa -->
+    <!-- <div class="info col-sm-12 col-md-12 col-lg-12">
     <div class="card bio mb-3" data-aos="fade-right" style="max-width: 80%">
       <div class="row g-0">
         <div class="image-izquierda col-sm-4 col-md-4 col-lg-4">
@@ -49,13 +50,13 @@
     </div>
   </div> -->
 
-  <div class="Nosotros info col-md-12 col-lg-12">
+    <div class="Nosotros info col-md-12 col-lg-12 col-sm-12 no-overflow-x">
     <div data-aos="fade-right" class="card bio mb-3" style="max-width: 80%">
       <div class="card-nosotros row g-0">
-        <div class="image-izquierda col-md-4 col-lg-4">
+        <div class="image-izquierda col-md-4 col-lg-4 col-sm-4">
           <img src="@\assets\img\card1.png" class="img-fluid float-start" alt="doctora" />
         </div>
-        <div class="col-md-8 col-lg-8">
+        <div class="col-md-8 col-lg-8 col-sm-8">
           <div class="card-body">
             <h5 class="purple card-title">Rosa Laura Torres Díaz</h5>
             <p class="purple card-text">Psicologa y psicoterapeuta</p>
@@ -74,8 +75,8 @@
       </div>
     </div>
   </div>
-  <!-- Video de información -->
-  <div class="info col-md-12 col.lg-12">
+    <!-- Video de información -->
+    <div class="info col-md-12 col-lg-12 no-overflow-x">
     <div class="card bio mb-3" data-aos="fade-left" style="max-width: 80%">
       <div class="row g-0">
         <div class="col-md-6 col-lg-6">
@@ -103,15 +104,15 @@
       </div>
     </div>
   </div>
-  <!--$Sección de nosotros -->
-  <div id="Nosotros" class="encabezado">
+    <!--$Sección de nosotros -->
+    <div id="Nosotros" class="encabezado col-sm-12 no-overflow-x">
     <h4 class="purple">Nosotros</h4>
     <p class="parrafo">Como pasamos de una idea a un clínica</p>
   </div>
-  <div class="Nosotros info col-md-12 col-lg-12">
+  <div class="Nosotros info col-md-12 col-lg-12 col-sm-12 no-overflow-x">
     <div data-aos="fade-right" class="card bio mb-3" style="max-width: 80%">
       <div class="card-nosotros row g-0">
-        <div class="col-md-8 col-lg-8">
+        <div class="col-md-8 col-lg-8 col-sm-8">
           <div class="card-body">
             <h5 class="purple card-title">
               ¿Cómo surgió iluminando caminos?
@@ -131,13 +132,13 @@
             </p>
           </div>
         </div>
-        <div class="image-derecha col-md-4 col-lg-4">
+        <div class="image-derecha col-md-4 col-lg-4 col-sm-4">
           <img src="@\assets\img\card2.png" class="img-fluid float-start" alt="doctora" />
         </div>
       </div>
     </div>
   </div>
-  <div class="Nosotros info col-md-12 col-lg-12">
+  <div class="Nosotros info col-md-12 col-lg-12 no-overflow-x">
     <div data-aos="fade-left" class="card bio mb-3" style="max-width: 80%">
       <div class="card-nosotros row g-0">
         <div class="image-izquierda col-md-4 col-lg-4">
@@ -165,8 +166,8 @@
       </div>
     </div>
   </div>
-  <!-- $Seccion de diplomas -->
-  <div class="container">
+    <!-- $Seccion de diplomas -->
+    <div class="no-overflow-x">
     <div class="row div-diplomas">
       <div data-aos="flip-up" class="col">
         <div class="a-box">
@@ -245,8 +246,8 @@
       </div>
     </div>
   </div>
-  <!-- $Seccion de cursos y talleres -->
-  <div class="talleres">
+    <!-- $Seccion de cursos y talleres -->
+    <div class="talleres">
     <div id="carouselExampleControlsDark" class="carousel-dark carousel slide col-md-9" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -363,8 +364,10 @@
       </button>
     </div>
   </div>
-  <!--$Sección de blog-->
-  <!-- <div id="Blog" class="encabezado">
+
+<!-- TODO:Colocar las 3 publicaciones mas recientes o carrousel de publicaciones recientes -->
+    <!--$Sección de blog-->
+    <!-- <div id="Blog" class="encabezado">
     <h4 class="purple">Blog</h4>
     <p class="parrafo">
       Descubre más en nuestro blog y conoce sobre lo que ofrecemos para ti
@@ -416,64 +419,68 @@
       </div>
     </div>
   </div> -->
-  <!--$ Sección de contacto -->
-  <div id="Contactanos" class="encabezado">
-    <h4 class="purple">Contacto</h4>
-    <p class="parrafo">
-      Si no estas seguro de que es lo que necesitas, no dudes en contactar
-      con nosotros y te ayudamos.
-    </p>
-  </div>
-  <div class="form-contacto col-md-12">
-    <div class="row col-md-8">
-      <div class="col-md-6">
-        <form id="formulario-contacto" class="formulario">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Escribe tu nombre</label>
-            <input id="name" type="text" name="nombre" class="form-control"
-              placeholder="Tu nombre" />
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Email</label>
-            <input id="email" type="email" name="email" class="form-control"
-              placeholder="name@example.com" />
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
-            <textarea id="mensaje" type="text" name="mensaje" class="form-control"
-              rows="3"></textarea>
-          </div>
-          <button type="submit" class="button-48" role="button" id="enviarCorreo">
-            <span class="text">Enviar</span>
-          </button>
-        </form>
-      </div>
-<div class="col-md-6">
-  <div class="card-info card fondo-form">
-    <div class="card-body card-form">
-      <p class="card-text">
-        <a class="whatsapp" href="https://wa.link/7v3hhk" target="_blank">
-          <img class="redes-form" src="@\assets\whatsapp.png" alt="whatsapp" /> 2292092415
-        </a>
-      </p>
-      <p>
-        <img class="redes-form" src="@\assets\gmail.png" alt="email" /> psic.ilucam@gmail.com
-      </p>
-      <p>
-        <img class="redes-form" src="@\assets\mapa.png" alt="ubicacion" /> Josefa Salum #605 entre Chofita de la Hoz y
-        Gemma Odila Garzon. Fracc. Villa Rica. zona norte Veracruz, Veracruz de Ignacio de la Llave, México
+    <!--$ Sección de contacto -->
+    <div id="Contactanos" class="encabezado col-sm-12">
+      <h4 class="purple">Contacto</h4>
+      <p class="parrafo">
+        Si no estas seguro de que es lo que necesitas, no dudes en contactar
+        con nosotros y te ayudamos.
       </p>
     </div>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.4287020274646!2d-96.1832006018717!3d19.22013942076288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c3444e0d28e0d3%3A0x85ee22042fdd9dad!2sJosefa%20Salum%20605%2C%20Villa%20Rica%20I%2C%20Camino%20Real%2C%2091800%20Veracruz%2C%20Ver.!5e0!3m2!1ses!2smx!4v1678601157468!5m2!1ses!2smx"
-      style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+    <div class="container">
+  <div class="row form-contacto">
+    <div class="col-md-6">
+      <form id="formulario-contacto" class="formulario">
+        <div class="mb-3">
+          <label for="name" class="form-label">Escribe tu nombre</label>
+          <input id="name" type="text" name="nombre" class="form-control" placeholder="Tu nombre" />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input id="email" type="email" name="email" class="form-control" placeholder="name@example.com" />
+        </div>
+        <div class="mb-3">
+          <label for="mensaje" class="form-label">Mensaje</label>
+          <textarea id="mensaje" type="text" name="mensaje" class="form-control" rows="3"></textarea>
+        </div>
+        <button type="submit" class="button-48" role="button" id="enviarCorreo">
+          <span class="text">Enviar</span>
+        </button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <div class="container-fluid">
+        <div class="card-info card fondo-form">
+          <div class="card-body card-form">
+            <p class="card-text">
+              <a class="whatsapp" href="https://wa.link/7v3hhk" target="_blank">
+                <img class="redes-form" src="@\assets\whatsapp.png" alt="whatsapp" /> 2292092415
+              </a>
+            </p>
+            <p>
+              <img class="redes-form" src="@\assets\gmail.png" alt="email" /> psic.ilucam@gmail.com
+            </p>
+            <p>
+              <img class="redes-form" src="@\assets\mapa.png" alt="ubicacion" /> Josefa Salum #605 entre Chofita de la
+              Hoz y Gemma Odila Garzon. Fracc. Villa Rica. zona norte Veracruz, Veracruz de Ignacio de la Llave, México
+            </p>
+          </div>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.4287020274646!2d-96.1832006018717!3d19.22013942076288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c3444e0d28e0d3%3A0x85ee22042fdd9dad!2sJosefa%20Salum%20605%2C%20Villa%20Rica%20I%2C%20Camino%20Real%2C%2091800%20Veracruz%2C%20Ver.!5e0!3m2!1ses!2smx!4v1678601157468!5m2!1ses!2smx"
+            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-</div>
-</div>
-  </div>
+
+
+
 </template>
+
+<style scoped>
+
+</style>
 
 <script>
 export default {

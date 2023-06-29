@@ -3,6 +3,11 @@
     src: url(../font/DMSansRegular.ttf);
 }
 
+/* Oculta el desbordamiento */
+.no-overflow-x {
+    overflow-x: hidden;
+}
+
 * {
     font-family: DMSans;
 }
@@ -19,9 +24,10 @@ header {
 }
 
 nav {
-    top: 0px;
+    position: sticky;
+    top: 0;
+    width: 100%;
     background-color: #9f70d2;
-    z-index: 2;
     /* backdrop-filter: blur(5px); */
 }
 
@@ -272,13 +278,13 @@ footer {
 }
 
 .img-container {
-    height: 127px;
+    height: 160px;
     width: 311px;
 }
 
 .img-container img {
     height: 100px;
-    margin: -35px 0px 0px -70px;
+    margin: 0px 0px 0px -70px;
 }
 
 .text-container {
@@ -295,6 +301,19 @@ footer {
     justify-content: center;
 }
 
+@media (max-width: 767px) {
+    .div-diplomas {
+      flex-wrap: wrap;
+    }
+  
+    .a-box {
+      width: 70%;
+    }
+  
+    .img-container img {
+      margin: 0px 20px 0px auto;
+    }
+  }
 /* .text-container h3 {
     margin: 20px 0px 10px 0px;
     color: #04bcff;
@@ -342,12 +361,7 @@ footer {
     padding-bottom: 2em;
 }
 .form-contacto{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding-bottom: 40px;
-    padding-left: 20px;
-    padding-right: 10px;
 }
 
 .fondo-form{

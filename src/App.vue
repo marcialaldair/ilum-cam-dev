@@ -10,6 +10,8 @@ import Header from '@/components/HeaderComponent.vue';
 import Footer from '@/components/FooterComponent.vue';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 
 
 export default {

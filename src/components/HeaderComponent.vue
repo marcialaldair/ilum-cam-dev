@@ -1,7 +1,7 @@
 <template>
-    <nav class="navbar sticky-top navbar-expand-lg col-md-12">
-      <div class="container-fluid">
-        <a class="navbar-brand logo col-md-1 col-sm-1" href="/">
+  <nav class="navbar sticky-top navbar-expand-lg col-md-12">
+    <div class="container-fluid">
+        <a class="navbar-brand logo" href="/">
           <img :src="imageSource" alt="logo_ilumcam" width="40" height="45" />
         </a>
         <button
@@ -15,11 +15,12 @@
         >
           <span>
             <lord-icon
-              src="https://cdn.lordicon.com/uzrqzyei.json"
-              trigger="morph"
-              colors="primary:#e4e4e4,secondary:#08a88a"
-              style="width: 40px; height: 40px"
-            ></lord-icon>
+      :src="iconSrc"
+      class="clickable"
+      trigger="morph"
+      colors="primary:#e4e4e4,secondary:#08a88a"
+      style="width: 40px; height: 40px"
+    ></lord-icon>
           </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
@@ -34,9 +35,11 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
+      iconSrc: 'https://cdn.lordicon.com/uzrqzyei.json',
       imageSource: require("@/assets/logo.png"),
     };
   },
