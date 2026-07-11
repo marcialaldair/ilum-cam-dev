@@ -117,6 +117,7 @@
 <script>
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import apiClient from '@/services/api';
 
 export default {
     components: {
@@ -164,15 +165,21 @@ export default {
     },
     obtenerInformacion() {
       // Editar para guardar la publicación
-      fetch("http://localhost/publicaciones/?consultar="+this.$route.params.Id)
-      .then(respuesta=>respuesta.json())
-      .then((datosRespuesta)=>{
-        console.log(datosRespuesta);
-        this.publicacion=datosRespuesta[0];
-        this.$nextTick(() => {
-          this.$refs.quillEditor.setHTML(this.publicacion.Descripcion);
+      apiClient.get(`/publicaciones/${this.$route.params.Id}`)
+        .then((response) => {
+          console.log(response.data);
+          const datos = response.data;
+          this.publicacion = {
+            Titulo: datos.titulo,
+            Imagen: datos.imagen,
+            Descripcion: datos.descripcion,
+            Fecha: datos.fecha,
+            Hora: datos.hora,
+          };
+          this.$nextTick(() => {
+            this.$refs.quillEditor.setHTML(this.publicacion.Descripcion);
+          });
         });
-      });
     },
     cancelar() {
       // Lógica para cancelar la creación de la publicación
@@ -185,23 +192,17 @@ export default {
     },
     editarPublicacion(){
       var datosEnviar = {
-        id:this.$route.params.Id,
         titulo: this.publicacion.Titulo,
         imagen: this.publicacion.Imagen,
         descripcion: this.publicacion.Descripcion = this.$refs.quillEditor.getHTML(),
-        estado:0,
         fecha: this.publicacion.Fecha,
         hora: this.publicacion.Hora,
       };
-      fetch("http://localhost/publicaciones/?actualizar="+this.$route.params.Id,{
-        method:"POST",
-        body:JSON.stringify(datosEnviar)
-      })
-      .then(respuesta=>respuesta.json())
-      .then((datosRespuesta)=>{
-        console.log(datosRespuesta);
-        window.location.href='../listar';
-      });
+      apiClient.put(`/publicaciones/${this.$route.params.Id}`, datosEnviar)
+        .then((response) => {
+          console.log(response.data);
+          window.location.href='../listar';
+        });
   },
   cerrarSesion() {
       // Actualizar el estado de inicio de sesión a "false"

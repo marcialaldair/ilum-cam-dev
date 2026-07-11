@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import apiClient from '@/services/api';
 
 export default {
   data() {
@@ -47,8 +47,8 @@ export default {
         email: this.email,
         password: this.password,
       };
-      // Realizar una solicitud HTTP GET a la ruta de validación
-      axios.get('http://localhost/admin/', { params: payload })
+      // Realizar una solicitud HTTP POST a la ruta de validación
+      apiClient.post('/login', payload)
         .then(response => {
           console.log(response);
           // Verificar la respuesta del backend

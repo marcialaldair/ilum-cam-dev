@@ -42,26 +42,26 @@
               v-for="publicacion in paginatedPublicaciones.reverse()"
               :key="publicacion.id"
             >
-              <th scope="row">{{ publicacion.Id }}</th>
-              <td>{{ truncateText(publicacion.Titulo, 40) }}</td>
+              <th scope="row">{{ publicacion.id }}</th>
+              <td>{{ truncateText(publicacion.titulo, 40) }}</td>
               <td>
                 <span
                   :class="
-                    publicacion.Estado == 1
+                    publicacion.estado == 1
                       ? 'alert alert-success'
                       : 'alert alert-danger'
                   "
                   role="alert"
                 >
-                  {{ publicacion.Estado == 1 ? "Activo" : "Inactivo" }}
+                  {{ publicacion.estado == 1 ? "Activo" : "Inactivo" }}
                 </span>
               </td>
-              <td>{{ publicacion.Fecha }}</td>
-              <td>{{ publicacion.Hora }}</td>
+              <td>{{ publicacion.fecha }}</td>
+              <td>{{ publicacion.hora }}</td>
               <td>
                 <div class="button-container">
                   <router-link
-                    :to="{ name: 'editar', params: { Id: publicacion.Id } }"
+                    :to="{ name: 'editar', params: { Id: publicacion.id } }"
                     class="btn btn-primary btn-sm"
                     ><i class="fa-solid fa-pen"></i
                   ></router-link>
@@ -69,7 +69,7 @@
                   <button
                     id="liveToastBtn"
                     type="button"
-                    v-on:click="borrarPublicacion(publicacion.Id)"
+                    v-on:click="borrarPublicacion(publicacion.id)"
                     class="btn btn-danger btn-sm"
                   >
                     <i class="fa-solid fa-trash" style="color: #ffffff"></i>
@@ -222,6 +222,8 @@
 </style>
 
 <script>
+import apiClient from '@/services/api';
+
 export default {
   data() {
     return {
@@ -244,46 +246,13 @@ export default {
     },
   },
   methods: {
-    actualizarEstadoPublicacion(publicacion) {
-    const fechaActual = new Date();
-    const fechaPublicacion = new Date(
-      publicacion.Fecha + " " + publicacion.Hora
-    );
-
-    if (fechaActual >= fechaPublicacion && publicacion.Estado !== 1) {
-      // Realizar la solicitud POST para actualizar el estado de la publicación
-      const datosEnviar = {
-        id: publicacion.Id,
-        estado: 1,
-      };
-
-      fetch("http://localhost/publicaciones/?estado=" + publicacion.Id, {
-        method: "POST",
-        body: JSON.stringify(datosEnviar),
-      })
-        .then((respuesta) => respuesta.json())
-        .then((datosRespuesta) => {
-          console.log(datosRespuesta);
-          // Aquí puedes realizar alguna acción adicional después de actualizar el estado
+    consultarPublicaciones() {
+      apiClient.get('/publicaciones')
+        .then((response) => {
+          this.publicaciones = response.data;
         })
         .catch(console.log);
-    }
-  },
-  consultarPublicaciones() {
-  fetch("http://localhost/publicaciones/")
-    .then((respuesta) => respuesta.json())
-    .then((datosRespuesta) => {
-      if (typeof datosRespuesta[0].success === "undefined") {
-        this.publicaciones = datosRespuesta;
-
-        // Verificar y actualizar el estado de las publicaciones
-        this.publicaciones.forEach((publicacion) => {
-          this.actualizarEstadoPublicacion(publicacion);
-        });
-      }
-    })
-    .catch(console.log);
-},
+    },
     setCurrentPage(page) {
       this.currentPage = page;
     },
@@ -295,10 +264,10 @@ export default {
       }
     },
     borrarPublicacion(id) {
-      fetch("http://localhost/publicaciones/?borrar=" + id)
-        .then((respuesta) => respuesta.json())
-        .then((datosRespuesta) => {
-          console.log(datosRespuesta);
+      apiClient.delete(`/publicaciones/${id}`)
+        .then((response) => {
+          console.log(response.data);
+          this.consultarPublicaciones();
         })
         .catch(console.log);
     },

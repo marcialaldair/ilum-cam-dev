@@ -115,6 +115,7 @@
 <script>
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import apiClient from '@/services/api';
 
 export default {
   components: {
@@ -159,19 +160,14 @@ export default {
         titulo: this.publicacion.Titulo,
         imagen: this.publicacion.Imagen,
         descripcion: this.publicacion.Descripcion = this.$refs.quillEditor.getHTML(),
-        estado : 0,
         fecha: this.publicacion.Fecha,
         hora: this.publicacion.Hora,
       };
-      fetch("http://localhost/publicaciones/?insertar=1",{
-        method:"POST",
-        body:JSON.stringify(datosEnviar)
-      })
-      .then(respuesta=>respuesta.json())
-      .then((datosRespuesta)=>{
-        console.log(datosRespuesta);
-        window.location.href='listar';
-      });
+      apiClient.post('/publicaciones', datosEnviar)
+        .then((response) => {
+          console.log(response.data);
+          window.location.href='listar';
+        });
     },
     cancelar() {
       // Lógica para cancelar la creación de la publicación

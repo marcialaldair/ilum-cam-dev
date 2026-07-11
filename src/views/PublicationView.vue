@@ -2,7 +2,7 @@
   <div class="page-container">
     <div class="container-text">
       <div class="content-container">
-        <div class="fondo-publicacion ql-editor" ref="descripcion" v-html="publicaciones.Descripcion"></div>
+        <div class="fondo-publicacion ql-editor" ref="descripcion" v-html="publicaciones.descripcion"></div>
       </div>
     </div>
   </div>
@@ -38,6 +38,8 @@
 </style>
 
 <script>
+import apiClient from '@/services/api';
+
 export default {
   data() {
     return {
@@ -49,11 +51,10 @@ export default {
   },
   methods: {
     obtenerInformacion() {
-      fetch("http://localhost/publicaciones/?consultar=" + this.$route.params.Id)
-        .then(respuesta => respuesta.json())
-        .then((datosRespuesta) => {
-          console.log(datosRespuesta);
-          this.publicaciones = datosRespuesta[0];
+      apiClient.get(`/publicaciones/${this.$route.params.Id}`)
+        .then((response) => {
+          console.log(response.data);
+          this.publicaciones = response.data;
           this.aplicarEstilos();
         });
     },
