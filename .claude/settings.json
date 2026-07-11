@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -d node_modules)",
+      "Bash(npm -v)",
+      "Bash(php -v)",
+      "Bash(mysql --version)",
+      "Bash(composer --version)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\Desarrollo\\Documents\\Proyectos\\ilum-cam-api"
+    ]
+  }
+}
