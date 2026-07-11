@@ -4,22 +4,22 @@
       <div class="row">
         <div v-for="publicacion in publicacionesFiltradasOrdenadas" :key="publicacion.id" class="mb-5 col-md-3 col-lg-3 card-center">
           <router-link
-            :to="{ name: 'publicacion', params: { Id: publicacion.Id } }"
+            :to="{ name: 'publicacion', params: { Id: publicacion.id } }"
             class="btn"
           >
             <div class="card">
               <div class="card-img-container">
                 <img
-                  :src="publicacion.Imagen"
+                  :src="publicacion.imagen"
                   class="card-img-top"
                   alt="Imagen"
                 />
               </div>
               <div class="card-body">
-                <h5 class="card-title">{{ truncateText(publicacion.Titulo, 38) }}</h5>
+                <h5 class="card-title">{{ truncateText(publicacion.titulo, 38) }}</h5>
               </div>
               <div class="card-footer text-left">
-                <small class="text-muted">Publicado: {{ publicacion.Fecha }}</small>
+                <small class="text-muted">Publicado: {{ publicacion.fecha }}</small>
               </div>
             </div>
           </router-link>
@@ -66,6 +66,8 @@
 </style>
 
 <script>
+import apiClient from '@/services/api';
+
 export default {
   data() {
     return {
@@ -79,47 +81,21 @@ export default {
     publicacionesFiltradasOrdenadas() {
       const publicacionesFiltradas = this.publicacionesFiltradas;
       return publicacionesFiltradas.sort((a, b) => {
-        const fechaPublicacionA = new Date(a.Fecha + " " + a.Hora);
-        const fechaPublicacionB = new Date(b.Fecha + " " + b.Hora);
+        const fechaPublicacionA = new Date(a.fecha + " " + a.hora);
+        const fechaPublicacionB = new Date(b.fecha + " " + b.hora);
         return fechaPublicacionB - fechaPublicacionA;
       });
     },
     publicacionesFiltradas() {
-      var fechaActual = new Date();
-      return this.publicaciones.filter((publicacion) => {
-        var fechaPublicacion = new Date(publicacion.Fecha + " " + publicacion.Hora);
-
-        if (fechaActual >= fechaPublicacion && publicacion.Estado !== 1) {
-          // Realizar la solicitud de actualización del estado
-          var datosEnviar = {
-            id: publicacion.Id,
-            estado: 1,
-          };
-
-          fetch("http://localhost/publicaciones/?estado=" + publicacion.Id, {
-            method: "POST",
-            body: JSON.stringify(datosEnviar),
-          })
-            .then((respuesta) => respuesta.json())
-            .then((datosRespuesta) => {
-              console.log(datosRespuesta);
-              // Actualizar el estado de la publicación localmente
-              publicacion.Estado = 1;
-            });
-        }
-
-        return fechaActual >= fechaPublicacion;
-      });
+      // El backend ya solo marca estado=1 cuando la fecha/hora programada llegó
+      return this.publicaciones.filter((publicacion) => publicacion.estado === 1);
     },
   },
   methods: {
     consultarPublicaciones() {
-      fetch("http://localhost/publicaciones/")
-        .then((respuesta) => respuesta.json())
-        .then((datosRespuesta) => {
-          if (typeof datosRespuesta[0].success === "undefined") {
-            this.publicaciones = datosRespuesta;
-          }
+      apiClient.get('/publicaciones')
+        .then((response) => {
+          this.publicaciones = response.data;
         })
         .catch(console.log);
     },
