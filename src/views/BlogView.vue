@@ -1,8 +1,9 @@
 <template>
   <div class="card-blog">
+    <h1 class="visually-hidden">Blog de Iluminando Caminos Psicología Integral</h1>
     <div class="container mt-5">
       <div class="row">
-        <div v-for="publicacion in publicacionesFiltradasOrdenadas" :key="publicacion.id" class="mb-5 col-md-3 col-lg-3 card-center">
+        <div v-for="(publicacion, indice) in publicacionesFiltradasOrdenadas" :key="publicacion.id" class="mb-5 col-md-3 col-lg-3 card-center">
           <router-link
             :to="{ name: 'publicacion', params: { Id: publicacion.id } }"
             class="btn"
@@ -12,11 +13,15 @@
                 <img
                   :src="publicacion.imagen"
                   class="card-img-top"
-                  alt="Imagen"
+                  alt=""
+                  width="288"
+                  height="200"
+                  :loading="indice < 4 ? 'eager' : 'lazy'"
+                  decoding="async"
                 />
               </div>
               <div class="card-body">
-                <h5 class="card-title">{{ truncateText(publicacion.titulo, 38) }}</h5>
+                <h2 class="h5 card-title" :title="publicacion.titulo">{{ truncateText(publicacion.titulo, 38) }}</h2>
               </div>
               <div class="card-footer text-left">
                 <small class="text-muted">Publicado: {{ publicacion.fecha }}</small>

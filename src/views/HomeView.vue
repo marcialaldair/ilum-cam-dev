@@ -2,25 +2,36 @@
     <!-- <header class="container-fluid">Psicología integral</header> -->
     <!--$ navbar para pegar el navbar arriba aplicar fixed-top-->
     <!--$ Carrousel -->
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="8000">
+    <h1 class="visually-hidden">Iluminando Caminos Psicología Integral: terapia psicológica en Veracruz y en línea</h1>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" :data-bs-ride="autoplay ? 'carousel' : null" data-bs-interval="8000"
+      aria-roledescription="carrusel" aria-label="Servicios destacados">
       <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img srcset="@\assets\img\slider.png 1920w, @\assets\img\slider_cel.png 640w" class="d-block w-100"
-            src="img/cielito.jpg">
+        <div class="carousel-item active" aria-roledescription="diapositiva" aria-label="1 de 2">
+          <!-- Imagen vertical en móvil y horizontal en escritorio; es la imagen principal (LCP), se carga con prioridad alta -->
+          <picture>
+            <source media="(max-width: 767px)" srcset="@/assets/img/optimized/slider_cel.webp" width="552" height="1080">
+            <source srcset="@/assets/img/optimized/slider-1280.webp 1280w, @/assets/img/optimized/slider.webp 1920w" sizes="100vw" width="1920" height="1080">
+            <img src="@/assets/img/optimized/slider.webp" class="d-block w-100" width="1920" height="1080" fetchpriority="high"
+              alt="¿No eres de Veracruz? Conoce nuestra terapia en línea. Solo necesitas acceso a Internet y un teléfono o computadora. Agenda tu cita al +52 229 209 2415.">
+          </picture>
           <!-- <img src="img/pexels-cottonbro-studio-4100672.jpg" class="d-block w-100" data-bs-interval="10000" alt="..." /> -->
         </div>
-        <div class="carousel-item">
-          <img srcset="@\assets\img\slider1.png 1920w, @\assets\img\slider_cel1.png 640w" class="d-block w-100"
-            src="img/cielito.jpg">
+        <div class="carousel-item" aria-roledescription="diapositiva" aria-label="2 de 2">
+          <picture>
+            <source media="(max-width: 767px)" srcset="@/assets/img/optimized/slider_cel1.webp" width="552" height="1080">
+            <source srcset="@/assets/img/optimized/slider1-1280.webp 1280w, @/assets/img/optimized/slider1.webp 1920w" sizes="100vw" width="1920" height="1080">
+            <img src="@/assets/img/optimized/slider1.webp" class="d-block w-100" width="1920" height="1080" fetchpriority="low" decoding="async"
+              alt="Terapia para adolescentes, adultos, de pareja, familiar, grupal y para mujeres víctimas de violencia. Terapia breve con hipnosis ericksoniana. Grupos de crecimiento para niñas, niños, adolescentes y mujeres, y sesiones de relajación y meditación.">
+          </picture>
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden">Diapositiva anterior</span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden">Diapositiva siguiente</span>
       </button>
     </div>
     <!--$ Informacion de la psicologa -->
@@ -33,10 +44,10 @@
         <div class="col-sm-8 col-md-8 col-lg-8">
           <div class="card-body">
             <h5 class="purple card-title">Rosa Laura Torres Díaz</h5>
-            <p class="purple card-text">Psicologa y psicoterapeuta</p>
+            <p class="purple card-text">Psicóloga y psicoterapeuta</p>
             <p class="card-text">
               Soy la creadora de
-              <span class="purple">“Iluminando Caminos Psicoloía Integral”</span>
+              <span class="purple">“Iluminando Caminos Psicología Integral”</span>
             </p>
             <p class="card-text">
               Si quieres mejorar tu vida más rápido y cómodamente puedes
@@ -54,15 +65,16 @@
     <div data-aos="fade-right" class="card bio mb-3" style="max-width: 80%">
       <div class="card-nosotros row g-0">
         <div class="image-izquierda col-md-4 col-lg-4 col-sm-4">
-          <img src="@\assets\img\card1.png" class="img-fluid float-start" alt="doctora" />
+          <img src="@/assets/img/optimized/card1.webp" class="img-fluid float-start" width="490" height="490" loading="lazy" decoding="async"
+            alt="Psicóloga tomando notas en una tabla durante una sesión de terapia" />
         </div>
         <div class="col-md-8 col-lg-8 col-sm-8">
           <div class="card-body">
-            <h5 class="purple card-title">Rosa Laura Torres Díaz</h5>
-            <p class="purple card-text">Psicologa y psicoterapeuta</p>
+            <h2 class="h5 purple card-title">Rosa Laura Torres Díaz</h2>
+            <p class="purple card-text">Psicóloga y psicoterapeuta</p>
             <p class="card-text">
               Soy la creadora de
-              <span class="purple">“Iluminando Caminos Psicoloía Integral”</span>
+              <span class="purple">“Iluminando Caminos Psicología Integral”</span>
             </p>
             <p class="card-text">
               Si quieres mejorar tu vida más rápido y cómodamente puedes
@@ -81,11 +93,11 @@
       <div class="row g-0">
         <div class="col-md-6 col-lg-6">
           <div class="card-body">
-            <h5 class="purple card-title">Rosa Laura Torres Díaz</h5>
-            <p class="purple card-text">Psicologa y psicoterapeuta</p>
+            <h2 class="h5 purple card-title">Rosa Laura Torres Díaz</h2>
+            <p class="purple card-text">Psicóloga y psicoterapeuta</p>
             <p class="card-text">
               Soy la creadora de
-              <span class="purple">“Iluminando Caminos Psicoloía Integral”</span>
+              <span class="purple">“Iluminando Caminos Psicología Integral”</span>
             </p>
             <p class="card-text">
               Si quieres mejorar tu vida más rápido y cómodamente puedes
@@ -96,7 +108,7 @@
           </div>
         </div>
         <div class="image-derecha col-md-6 col-lg-6 embed-responsive embed-responsive-16by9">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/cDsbV0ObwwA" title="YouTube video player"
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/cDsbV0ObwwA" title="Video de presentación de Iluminando Caminos Psicología Integral" loading="lazy"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
@@ -106,7 +118,7 @@
   </div>
     <!--$Sección de nosotros -->
     <div id="Nosotros" class="encabezado col-sm-12 no-overflow-x">
-    <h4 class="purple">Nosotros</h4>
+    <h2 class="h4 purple">Nosotros</h2>
     <p class="parrafo">Como pasamos de una idea a un clínica</p>
   </div>
   <div class="Nosotros info col-md-12 col-lg-12 col-sm-12 no-overflow-x">
@@ -114,9 +126,9 @@
       <div class="card-nosotros row g-0">
         <div class="col-md-8 col-lg-8 col-sm-8">
           <div class="card-body">
-            <h5 class="purple card-title">
-              ¿Cómo surgió iluminando caminos?
-            </h5>
+            <h3 class="h5 purple card-title">
+              ¿Cómo surgió Iluminando Caminos?
+            </h3>
             <br /><br />
             <p class="card-text">
               Surgió como idea desde que estudiaba la licenciatura y lo
@@ -133,7 +145,8 @@
           </div>
         </div>
         <div class="image-derecha col-md-4 col-lg-4 col-sm-4">
-          <img src="@\assets\img\card2.png" class="img-fluid float-start" alt="doctora" />
+          <img src="@/assets/img/optimized/card2.webp" class="img-fluid float-start" width="490" height="490" loading="lazy" decoding="async"
+            alt="Ilustración de un grupo de personas chocando las manos en señal de trabajo en equipo" />
         </div>
       </div>
     </div>
@@ -142,13 +155,14 @@
     <div data-aos="fade-left" class="card bio mb-3" style="max-width: 80%">
       <div class="card-nosotros row g-0">
         <div class="image-izquierda col-md-4 col-lg-4">
-          <img src="@\assets\img\card3.png" class="img-fluid float-start" alt="doctora" />
+          <img src="@/assets/img/optimized/card3.webp" class="img-fluid float-start" width="490" height="490" loading="lazy" decoding="async"
+            alt="Ilustración de una psicóloga conversando con una paciente durante una sesión de terapia" />
         </div>
         <div class="col-md-8 col-lg-8">
           <div class="card-body">
-            <h5 class="purple card-title">
-              ¿Cómo surgió iluminando caminos?
-            </h5>
+            <h3 class="h5 purple card-title">
+              ¿Cómo surgió Iluminando Caminos?
+            </h3>
             <br /><br />
             <p class="card-text">
               Mis colegas se fueron separando al obtener sus plazas de
@@ -167,12 +181,13 @@
     </div>
   </div>
     <!-- $Seccion de diplomas -->
-    <div class="no-overflow-x">
+    <section class="no-overflow-x" aria-labelledby="titulo-formacion">
+    <h2 id="titulo-formacion" class="visually-hidden">Formación y experiencia</h2>
     <div class="row div-diplomas">
       <div data-aos="flip-up" class="col">
         <div class="a-box">
           <div class="img-container">
-            <img src="@\assets\img\garantizado.png" />
+            <img src="@/assets/img/optimized/garantizado.webp" alt="" width="100" height="100" loading="lazy" decoding="async" />
           </div>
           <div class="text-container">
             <div>
@@ -185,7 +200,7 @@
       <div data-aos="flip-up" class="col">
         <div class="a-box">
           <div class="img-container">
-            <img src="@\assets\img\garantizado.png" />
+            <img src="@/assets/img/optimized/garantizado.webp" alt="" width="100" height="100" loading="lazy" decoding="async" />
           </div>
           <div class="text-container">
             <div>
@@ -198,7 +213,7 @@
       <div data-aos="flip-up" class="col">
         <div class="a-box">
           <div class="img-container">
-            <img src="@\assets\img\garantizado.png" />
+            <img src="@/assets/img/optimized/garantizado.webp" alt="" width="100" height="100" loading="lazy" decoding="async" />
           </div>
           <div class="text-container">
             <div>Formación como instructora independiente ante la STPS.</div>
@@ -210,7 +225,7 @@
       <div data-aos="flip-up" class="col">
         <div class="a-box">
           <div class="img-container">
-            <img src="@\assets\img\garantizado.png" />
+            <img src="@/assets/img/optimized/garantizado.webp" alt="" width="100" height="100" loading="lazy" decoding="async" />
           </div>
           <div class="text-container">
             <div>
@@ -223,7 +238,7 @@
       <div data-aos="flip-up" class="col">
         <div class="a-box">
           <div class="img-container">
-            <img src="@\assets\img\garantizado.png" />
+            <img src="@/assets/img/optimized/garantizado.webp" alt="" width="100" height="100" loading="lazy" decoding="async" />
           </div>
           <div class="text-container">
             <div>He impartido cursos de introducción a la psicoterapia.</div>
@@ -233,7 +248,7 @@
       <div data-aos="flip-up" class="col">
         <div class="a-box">
           <div class="img-container">
-            <img src="@\assets\img\garantizado.png" />
+            <img src="@/assets/img/optimized/garantizado.webp" alt="" width="100" height="100" loading="lazy" decoding="async" />
           </div>
           <div class="text-container">
             <div>
@@ -245,10 +260,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
     <!-- $Seccion de cursos y talleres -->
-    <div class="talleres">
-    <div id="carouselExampleControlsDark" class="carousel-dark carousel slide col-md-9" data-bs-ride="carousel">
+    <section class="talleres" aria-labelledby="titulo-talleres">
+    <h2 id="titulo-talleres" class="visually-hidden">Cursos y talleres impartidos</h2>
+    <div id="carouselExampleControlsDark" class="carousel-dark carousel slide col-md-9" :data-bs-ride="autoplay ? 'carousel' : null"
+      aria-roledescription="carrusel" aria-label="Cursos y talleres impartidos">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="row">
@@ -355,15 +372,15 @@
       <button class="flecha-carousel-prev carousel-control-prev" type="button"
         data-bs-target="#carouselExampleControlsDark" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden">Talleres anteriores</span>
       </button>
       <button class="flecha-carousel-next flecha-carousel carousel-control-next" type="button"
         data-bs-target="#carouselExampleControlsDark" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden">Talleres siguientes</span>
       </button>
     </div>
-  </div>
+  </section>
 
 <!-- TODO:Colocar las 3 publicaciones mas recientes o carrousel de publicaciones recientes -->
     <!--$Sección de blog-->
@@ -421,7 +438,7 @@
   </div> -->
     <!--$ Sección de contacto -->
     <div id="Contactanos" class="encabezado col-sm-12">
-      <h4 class="purple">Contacto</h4>
+      <h2 class="h4 purple">Contacto</h2>
       <p class="parrafo">
         Si no estas seguro de que es lo que necesitas, no dudes en contactar
         con nosotros y te ayudamos.
@@ -430,42 +447,64 @@
     <div class="container">
   <div class="row form-contacto">
     <div class="col-md-6">
-      <form id="formulario-contacto" class="formulario">
+      <form id="formulario-contacto" class="formulario" novalidate @submit.prevent="enviarContacto">
         <div class="mb-3">
           <label for="name" class="form-label">Escribe tu nombre</label>
-          <input id="name" type="text" name="nombre" class="form-control" placeholder="Tu nombre" />
+          <input id="name" v-model.trim="contacto.nombre" type="text" name="nombre" class="form-control" :class="{ 'is-invalid': errores.nombre }"
+            placeholder="Tu nombre" autocomplete="name" maxlength="100" required
+            :aria-invalid="errores.nombre ? 'true' : null" :aria-describedby="errores.nombre ? 'error-nombre' : null" />
+          <div v-if="errores.nombre" id="error-nombre" class="invalid-feedback">{{ errores.nombre }}</div>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input id="email" type="email" name="email" class="form-control" placeholder="name@example.com" />
+          <input id="email" v-model.trim="contacto.email" type="email" name="email" class="form-control" :class="{ 'is-invalid': errores.email }"
+            placeholder="name@example.com" autocomplete="email" maxlength="254" required
+            :aria-invalid="errores.email ? 'true' : null" :aria-describedby="errores.email ? 'error-email' : null" />
+          <div v-if="errores.email" id="error-email" class="invalid-feedback">{{ errores.email }}</div>
         </div>
         <div class="mb-3">
           <label for="mensaje" class="form-label">Mensaje</label>
-          <textarea id="mensaje" type="text" name="mensaje" class="form-control" rows="3"></textarea>
+          <textarea id="mensaje" v-model.trim="contacto.mensaje" name="mensaje" class="form-control" :class="{ 'is-invalid': errores.mensaje }"
+            rows="3" maxlength="5000" required
+            :aria-invalid="errores.mensaje ? 'true' : null" :aria-describedby="errores.mensaje ? 'error-mensaje' : null"></textarea>
+          <div v-if="errores.mensaje" id="error-mensaje" class="invalid-feedback">{{ errores.mensaje }}</div>
         </div>
-        <button type="submit" class="button-48" role="button" id="enviarCorreo">
-          <span class="text">Enviar</span>
+        <!-- Campo trampa para bots: oculto para las personas y para lectores de pantalla -->
+        <div class="campo-trampa" aria-hidden="true">
+          <label for="sitio_web">No llenes este campo</label>
+          <input id="sitio_web" v-model="contacto.sitio_web" type="text" name="sitio_web" tabindex="-1" autocomplete="off" />
+        </div>
+        <button type="submit" class="button-48" id="enviarCorreo" :disabled="enviando">
+          <span class="text">{{ enviando ? 'Enviando…' : 'Enviar' }}</span>
         </button>
+        <div role="status" aria-live="polite">
+          <p v-if="estadoEnvio" class="alert mt-3 mb-0" :class="estadoEnvio === 'ok' ? 'alert-success' : 'alert-danger'">
+            {{ mensajeEnvio }}
+          </p>
+        </div>
       </form>
     </div>
     <div class="col-md-6">
       <div class="container-fluid">
         <div class="card-info card fondo-form">
-          <div class="card-body card-form">
+          <address class="card-body card-form mb-0">
             <p class="card-text">
-              <a class="whatsapp" href="https://wa.link/7v3hhk" target="_blank">
-                <img class="redes-form" src="@\assets\whatsapp.png" alt="whatsapp" /> 2292092415
+              <a class="whatsapp" href="https://wa.link/7v3hhk" target="_blank" rel="noopener noreferrer">
+                <img class="redes-form" src="@/assets/whatsapp.png" alt="WhatsApp:" width="25" height="25" loading="lazy" /> 2292092415
+                <span class="visually-hidden">(se abre en una pestaña nueva)</span>
               </a>
             </p>
             <p>
-              <img class="redes-form" src="@\assets\gmail.png" alt="email" /> psic.ilucam@gmail.com
+              <a class="whatsapp" href="mailto:psic.ilucam@gmail.com">
+                <img class="redes-form" src="@/assets/img/optimized/gmail.webp" alt="Correo electrónico:" width="25" height="25" loading="lazy" /> psic.ilucam@gmail.com
+              </a>
             </p>
             <p>
-              <img class="redes-form" src="@\assets\mapa.png" alt="ubicacion" /> Josefa Salum #605 entre Chofita de la
+              <img class="redes-form" src="@/assets/img/optimized/mapa.webp" alt="Dirección:" width="25" height="25" loading="lazy" /> Josefa Salum #605 entre Chofita de la
               Hoz y Gemma Odila Garzon. Fracc. Villa Rica. zona norte Veracruz, Veracruz de Ignacio de la Llave, México
             </p>
-          </div>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.4287020274646!2d-96.1832006018717!3d19.22013942076288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c3444e0d28e0d3%3A0x85ee22042fdd9dad!2sJosefa%20Salum%20605%2C%20Villa%20Rica%20I%2C%20Camino%20Real%2C%2091800%20Veracruz%2C%20Ver.!5e0!3m2!1ses!2smx!4v1678601157468!5m2!1ses!2smx"
+          </address>
+          <iframe title="Ubicación de Iluminando Caminos en Google Maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.4287020274646!2d-96.1832006018717!3d19.22013942076288!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c3444e0d28e0d3%3A0x85ee22042fdd9dad!2sJosefa%20Salum%20605%2C%20Villa%20Rica%20I%2C%20Camino%20Real%2C%2091800%20Veracruz%2C%20Ver.!5e0!3m2!1ses!2smx!4v1678601157468!5m2!1ses!2smx"
             style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
@@ -479,11 +518,82 @@
 </template>
 
 <style scoped>
+.campo-trampa {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 
+.button-48:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
 </style>
 
 <script>
 export default {
   // Otras opciones y lógica del componente principal
+  data() {
+    return {
+      // Los carruseles no avanzan solos si el usuario pidió reducir animaciones
+      autoplay: !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      contacto: { nombre: '', email: '', mensaje: '', sitio_web: '' },
+      errores: {},
+      enviando: false,
+      estadoEnvio: null, // 'ok' | 'error' | null
+      mensajeEnvio: '',
+    };
+  },
+  methods: {
+    validarContacto() {
+      const errores = {};
+      if (!this.contacto.nombre) {
+        errores.nombre = 'Escribe tu nombre.';
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.contacto.email)) {
+        errores.email = 'Escribe un correo electrónico válido.';
+      }
+      if (!this.contacto.mensaje) {
+        errores.mensaje = 'Escribe tu mensaje.';
+      }
+      return errores;
+    },
+    async enviarContacto() {
+      if (this.enviando) return;
+      this.estadoEnvio = null;
+      this.errores = this.validarContacto();
+      if (Object.keys(this.errores).length) {
+        this.enfocarPrimerError();
+        return;
+      }
+
+      this.enviando = true;
+      try {
+        // El cliente HTTP se carga solo al enviar, para no sumarlo a la carga inicial de la portada
+        const { default: apiClient } = await import(/* webpackChunkName: "api" */ '@/services/api');
+        await apiClient.post('/contacto', this.contacto);
+        this.estadoEnvio = 'ok';
+        this.mensajeEnvio = '¡Gracias! Recibimos tu mensaje y te responderemos lo antes posible.';
+        this.contacto = { nombre: '', email: '', mensaje: '', sitio_web: '' };
+      } catch (error) {
+        const datos = (error.response && error.response.data) || {};
+        this.errores = datos.errors || {};
+        this.estadoEnvio = 'error';
+        this.mensajeEnvio = datos.message || 'No pudimos enviar tu mensaje. Revisa tu conexión e intenta de nuevo, o escríbenos por WhatsApp.';
+        this.enfocarPrimerError();
+      } finally {
+        this.enviando = false;
+      }
+    },
+    enfocarPrimerError() {
+      const campos = { nombre: 'name', email: 'email', mensaje: 'mensaje' };
+      const primero = Object.keys(campos).find((campo) => this.errores[campo]);
+      if (primero) {
+        this.$nextTick(() => document.getElementById(campos[primero]).focus());
+      }
+    },
+  },
 }
 </script>

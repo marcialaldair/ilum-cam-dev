@@ -1,6 +1,15 @@
 @font-face {
     font-family: DMSans;
-    src: url(../font/DMSansRegular.ttf);
+    src: url(../font/DMSans-Regular.woff2) format("woff2"),
+        url(../font/DMSansRegular.ttf) format("truetype");
+    font-display: swap;
+}
+
+/* Colores con contraste suficiente (WCAG AA) para texto claro sobre morado */
+:root {
+    --morado-fondo: #7b4bb3;
+    --morado-oscuro: #581a74;
+    --lila-claro: #f7e5ff;
 }
 
 /* Oculta el desbordamiento */
@@ -9,7 +18,47 @@
 }
 
 * {
-    font-family: DMSans;
+    font-family: DMSans, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Enlace "Saltar al contenido": oculto hasta que recibe el foco con el teclado */
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100px;
+    z-index: 2000;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background-color: var(--morado-oscuro);
+    color: var(--lila-claro);
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+main:focus {
+    outline: none;
+}
+
+/* Indicador de foco visible para navegación con teclado */
+a:focus-visible,
+button:focus-visible,
+.button-48:focus-visible {
+    outline: 3px solid var(--morado-oscuro);
+    outline-offset: 2px;
+}
+
+nav a:focus-visible,
+footer a:focus-visible,
+.navbar-toggler:focus-visible {
+    outline-color: var(--lila-claro);
+}
+
+/* Las secciones enlazadas desde el menú no quedan ocultas bajo la barra fija */
+[id] {
+    scroll-margin-top: 80px;
 }
 /* https://colormagic.app/palette/QnIEcn2zSuIIej7LDQ92
 https://colormagic.app/palette/4I4wR48CcAx0LCSxceSa
@@ -27,7 +76,7 @@ nav {
     position: sticky;
     top: 0;
     width: 100%;
-    background-color: #9f70d2;
+    background-color: var(--morado-fondo);
     /* backdrop-filter: blur(5px); */
 }
 
@@ -42,7 +91,7 @@ nav a,
     text-align: center;
     position: relative;
     text-decoration: none;
-    color: #f7e5ff;
+    color: var(--lila-claro);
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -66,20 +115,21 @@ nav a::after {
     content: "";
     width: 0%;
     height: 4px;
-    background-color: #581a74;
+    background-color: var(--lila-claro);
     left: 50%;
     bottom: 10px;
     transition: all 0.3s ease-in-out;
     border-radius: 5px;
 }
 
-nav a,
-.efecto:hover {
-    color: #581a74;
+.efecto:hover,
+.efecto:focus-visible {
+    color: #ffffff;
     cursor: pointer;
 }
 
-.efecto:hover::after {
+.efecto:hover::after,
+.efecto:focus-visible::after {
     cursor: pointer;
     width: 100%;
     left: 0;
@@ -167,7 +217,7 @@ nav a,
 /*Efecto hover de los botones*/
 .button-48 {
     appearance: none;
-    background-color: #9f70d2;
+    background-color: var(--morado-fondo);
     border-width: 0;
     padding: 0;
     box-sizing: border-box;
@@ -182,7 +232,6 @@ nav a,
     line-height: 1em;
     margin: 0;
     opacity: 1;
-    outline: 0;
     padding: 1em 2.2em;
     position: relative;
     text-align: center;
@@ -212,7 +261,8 @@ nav a,
     width: 100%;
 }
 
-.button-48:hover:before {
+.button-48:hover:before,
+.button-48:focus-visible:before {
     animation: opacityFallbackIn 0s step-start forwards;
     clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
 }
@@ -227,7 +277,7 @@ nav a,
 /* Estilos de footer */
 footer {
     height: 100px;
-    background-color: #9f70d2;
+    background-color: var(--morado-fondo);
     display: flex;
     align-items: center;
     justify-content: start;
@@ -236,13 +286,12 @@ footer {
 }
 
 .terminos {
-    color: #f7e5ff;
+    color: var(--lila-claro);
     text-decoration: none;
 }
 
 .terminos:hover {
-    color: rgba(255, 255, 255, 0.607);
-    cursor: pointer;
+    color: #ffffff;
 }
 
 .redes {
@@ -433,3 +482,18 @@ footer {
     align-items: center;
     height: 100vh;
   }
+
+/* Usuarios que prefieren menos movimiento: se desactivan transiciones y animaciones */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

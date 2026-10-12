@@ -1,7 +1,11 @@
 <template>
+    <!-- Enlace para que usuarios de teclado y lectores de pantalla salten la navegación -->
+    <a v-if="!hideHeaderFooter" class="skip-link" href="#contenido">Saltar al contenido principal</a>
     <!-- Se oculta el header y el footer en el backoffice -->
     <Header v-if="!hideHeaderFooter" />
-    <router-view></router-view>
+    <main id="contenido" tabindex="-1">
+      <router-view></router-view>
+    </main>
     <Footer v-if="!hideHeaderFooter" />
 </template>
 
@@ -15,39 +19,24 @@ import 'bootstrap/dist/js/bootstrap.js';
 
 
 export default {
+  name: 'App',
   components: {
     Header,
     Footer,
-  },mounted() {
-  this.setFavicon('/assets/logo.ico');
-  AOS.init({duration: 1500});
-},name: 'ComponentWithoutHeaderFooter',
-  metaInfo() {
-    return {
-      title: 'Component Without Header/Footer' // Cambia el título de la página si es necesario
-    }
+  },
+  mounted() {
+    AOS.init({
+      duration: 1500,
+      // Respeta la preferencia del sistema de reducir animaciones
+      disable: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    });
   },
   computed: {
     hideHeaderFooter() {
       return this.$route.meta.hideHeaderFooter || false
     }
   },
-  methods: {
-    setFavicon(iconPath) {
-      const favicon = document.querySelector('link[rel="icon"]');
-      if (favicon) {
-        favicon.href = iconPath;
-      } else {
-        const newFavicon = document.createElement('link');
-        newFavicon.rel = 'icon';
-        newFavicon.href = iconPath;
-        document.head.appendChild(newFavicon);
-      }
-    },
-  },
 }
 </script>
 
-<style src="@\assets\css\styles.css"></style>
-
-
+<style src="@/assets/css/styles.css"></style>

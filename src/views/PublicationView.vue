@@ -39,6 +39,7 @@
 
 <script>
 import apiClient from '@/services/api';
+import { actualizarMeta, resumenDeHtml } from '@/seo';
 
 export default {
   data() {
@@ -55,6 +56,10 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.publicaciones = response.data;
+          actualizarMeta({
+            title: `${this.publicaciones.titulo} | Blog Iluminando Caminos`,
+            description: resumenDeHtml(this.publicaciones.descripcion),
+          });
           this.aplicarEstilos();
         });
     },
@@ -64,6 +69,12 @@ export default {
         const imagenes = descripcionElement.querySelectorAll('img');
         imagenes.forEach((imagen) => {
           imagen.classList.add('img-fluid');
+          imagen.loading = 'lazy';
+          imagen.decoding = 'async';
+          // Sin alt, los lectores de pantalla leerían la URL (o el base64) de la imagen
+          if (!imagen.hasAttribute('alt')) {
+            imagen.alt = '';
+          }
         });
       });
     },

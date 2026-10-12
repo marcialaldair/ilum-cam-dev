@@ -3,24 +3,24 @@
     <div class="row col-md-12">
       <div class="col-md-6 fill-image">
         <!-- Contenido de la mitad izquierda con imagen -->
-        <img src="@\assets\img\LoginBO3.jpg" alt="Imagen" class="img-fluid img-login">
+        <img src="@/assets/img/optimized/login.webp" alt="" class="img-fluid img-login" width="1200" height="1200" fetchpriority="high">
       </div>
       <div class="row col-md-6 form-container">
         <!-- Contenido de la mitad derecha (formulario) -->
         <form class="col-md-9" v-on:submit.prevent="loginUser">
           <h1 class="mb-5 title-form">Bienvenida</h1>
           <div class="form-floating mb-5">
-            <input v-model="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email</label>
+            <input v-model="email" type="email" class="form-control" id="loginEmail" placeholder="name@example.com" autocomplete="username" required>
+            <label for="loginEmail">Email</label>
           </div>
           <div class="form-floating mb-5">
-            <input v-model="password" type="password" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Contraseña</label>
+            <input v-model="password" type="password" class="form-control" id="loginPassword" placeholder="Contraseña" autocomplete="current-password" required>
+            <label for="loginPassword">Contraseña</label>
           </div>
           <button type="submit" class="button-48">
             <span class="text" id="liveToastBtn">Entrar</span>
           </button>
-          <div class="alert alert-danger popup" role="alert" v-show="showAlert">
+          <div class="alert alert-danger popup" role="alert" aria-live="assertive" v-show="showAlert">
               Correo o contraseña incorrecta
           </div>
         </form>
