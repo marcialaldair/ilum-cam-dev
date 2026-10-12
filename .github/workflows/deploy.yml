@@ -3,9 +3,14 @@
 # Configuración (una sola vez) en GitHub → Settings → Secrets and variables → Actions:
 #   Secrets:   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD
 #   Variables (opcionales):
-#     FTP_SERVER_DIR  carpeta destino en el FTP (por defecto "public_html/")
+#     FTP_SERVER_DIR  carpeta destino en el FTP (por defecto "/domains/iluminandocaminos.blog/public_html")
+#                     El FTP de Hostinger entra en otra carpeta public_html que no es la del sitio,
+#                     por eso se usa la ruta completa de la carpeta del dominio.
 #     FTP_PROTOCOL    "ftps" (por defecto) o "ftp" si el servidor no acepta TLS
 #     FTP_PORT        puerto (por defecto 21)
+#
+# Se usa lftp en lugar de SamKirkland/FTP-Deploy-Action: con el FTPS de Hostinger esa acción
+# fallaba al crear carpetas ("read ECONNRESET (data socket)").
 name: Publicar sitio en Hostinger
 
 on:
@@ -39,42 +44,34 @@ jobs:
       - name: Compilar
         run: npm run build
 
-      # Solo sube los archivos que cambiaron. Nunca borra lo que no subió esta acción,
-      # así que public_html/api y cualquier otro archivo del servidor quedan intactos.
+      - name: Instalar lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      # Sube los archivos nuevos o modificados de dist/. Nunca borra nada del servidor,
+      # así que public_html/api, el .htaccess y cualquier otro archivo quedan intactos.
       - name: Subir a Hostinger
-        id: subir
-        # Hostinger a veces corta la conexión FTP (ECONNRESET), sobre todo si hay otra
-        # publicación en curso con el mismo usuario: en ese caso se reintenta abajo.
-        continue-on-error: true
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
-          port: ${{ vars.FTP_PORT || 21 }}
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_PORT: ${{ vars.FTP_PORT || 21 }}
+          FTP_PROTOCOL: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          FTP_SERVER_DIR: ${{ vars.FTP_SERVER_DIR || '/domains/iluminandocaminos.blog/public_html' }}
+        run: |
+          if [ "$FTP_PROTOCOL" = "ftp" ]; then TLS=false; else TLS=true; fi
+          # Sin barra final: con ella, lftp agrega el nombre de la carpeta de origen al destino
+          lftp --env-password -u "$FTP_USERNAME" -p "$FTP_PORT" "$FTP_SERVER" <<EOF
+          set ftp:ssl-allow $TLS
+          set ftp:ssl-force $TLS
+          set ftp:ssl-protect-data $TLS
           # Hostinger da una IP como servidor y su certificado TLS no está emitido para esa IP:
-          # "loose" mantiene la conexión cifrada sin validar el nombre del certificado.
-          security: ${{ vars.FTP_SECURITY || 'loose' }}
-          local-dir: ./dist/
-          server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
-
-      - name: Esperar antes de reintentar
-        if: steps.subir.outcome == 'failure'
-        run: sleep 90
-
-      # Mismos parámetros que el paso anterior
-      - name: Reintentar subida
-        if: steps.subir.outcome == 'failure'
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
-          port: ${{ vars.FTP_PORT || 21 }}
-          # Hostinger da una IP como servidor y su certificado TLS no está emitido para esa IP:
-          # "loose" mantiene la conexión cifrada sin validar el nombre del certificado.
-          security: ${{ vars.FTP_SECURITY || 'loose' }}
-          local-dir: ./dist/
-          server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
+          # la conexión sigue cifrada, solo no se valida el nombre del certificado.
+          set ssl:verify-certificate no
+          set net:timeout 30
+          set net:max-retries 5
+          set net:reconnect-interval-base 10
+          mirror --reverse --verbose --no-perms ./dist/ "${FTP_SERVER_DIR%/}" || exit 1
+          # Muestra en el log lo que quedó publicado, para verificarlo
+          echo "Contenido de ${FTP_SERVER_DIR%/}:"
+          cls -1 "${FTP_SERVER_DIR%/}/"
+          EOF
