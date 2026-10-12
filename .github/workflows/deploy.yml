@@ -1,0 +1,53 @@
+# Compila el sitio y lo publica en Hostinger por FTP en cada push a master.
+#
+# Configuración (una sola vez) en GitHub → Settings → Secrets and variables → Actions:
+#   Secrets:   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD
+#   Variables (opcionales):
+#     FTP_SERVER_DIR  carpeta destino en el FTP (por defecto "public_html/")
+#     FTP_PROTOCOL    "ftps" (por defecto) o "ftp" si el servidor no acepta TLS
+#     FTP_PORT        puerto (por defecto 21)
+name: Publicar sitio en Hostinger
+
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - '.claude/**'
+      - '**.md'
+  workflow_dispatch:
+
+# Evita que dos publicaciones se pisen si se hacen pushes seguidos
+concurrency:
+  group: deploy-sitio
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      # Usa .env.production (VUE_APP_API_URL y VUE_APP_SITE_URL)
+      - name: Compilar
+        run: npm run build
+
+      # Solo sube los archivos que cambiaron. Nunca borra lo que no subió esta acción,
+      # así que public_html/api y cualquier otro archivo del servidor quedan intactos.
+      - name: Subir a Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          port: ${{ vars.FTP_PORT || 21 }}
+          local-dir: ./dist/
+          server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
